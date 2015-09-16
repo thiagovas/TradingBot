@@ -1,0 +1,1 @@
+pip install -U TA-Lib scikit-learn

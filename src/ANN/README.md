@@ -3,7 +3,7 @@
 Using ANNs is one of the ways I'll try to model the problem of determine the time to buy or sell a stock.
 
 ##Input
-Here is the data I'll try to use as input:
+Here is the data I'll try to use as input:<br/>
 	* The closing price of the last x days.<br/>
 	* The opening price of the last x days.<br/>
 	* The maximum price of the last x days.<br/>

@@ -23,4 +23,4 @@ To begin, I'll test the ANN's with the number of days x being 5, 7, 10 or 15 day
 The output will be one node, its value will be on the range of [-1, 1].
 
 ##Activation Function
-The activation function will be given by:<br/><img src="http://i.imgur.com/0YKOq9G.png" align="center" border="0" alt="" />
+The activation function will be given by:<br/><img src="http://i.imgur.com/0YKOq9G.png" align="center" border="0" alt="\biggl S(t) = \[\frac{2}{1+e^t}-1\]" />

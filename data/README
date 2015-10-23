@@ -1,0 +1,11 @@
+splitter.py - Given a huge file with all stocks within it, the splitter script will separate it into several files, each file will have the data about one and just one stock.
+
+stocks_list - Just the list of stocks I have here.
+
+file_header - Describes the files, explains their structures.
+
+allStocks/15min_candles - Every file there has data about a stock, the candles there are 15 min candles.
+
+allStocks/daily_candles - Every file there has data about a stock, the candles there are daily candles.
+
+allStocks/trainset - A subset of files that I'll use to train and test my ANN, checkout its documentation to see how that's done.

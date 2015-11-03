@@ -1,0 +1,7 @@
+trainset/10day_candles filter=lfs diff=lfs merge=lfs -text
+trainset/15day_candles filter=lfs diff=lfs merge=lfs -text
+trainset/21day_candles filter=lfs diff=lfs merge=lfs -text
+trainset/5day_candles filter=lfs diff=lfs merge=lfs -text
+trainset/7day_candles filter=lfs diff=lfs merge=lfs -text
+trainset/daily_candles filter=lfs diff=lfs merge=lfs -text
+trainset/modify_daily_candles.py filter=lfs diff=lfs merge=lfs -text

@@ -57,6 +57,7 @@ def gen_daily_candle(filename):
         if get_date(line.split(',')) != lastDate:
             if lastDate != '':
                 daily_file.write(get_string_data(data))
+                data = new_data(line)
             else:
                 data = new_data(line)    
         else:

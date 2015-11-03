@@ -1,4 +1,4 @@
-splitter.py - Given a huge file with all stocks within it, the splitter script will separate it into several files, each file will have the data about one and just one stock.
+splitter.py - Given a huge file with all stocks in it, the splitter script will separate it into several files, each file will have the data about one and just one stock.
 
 stocks_list - Just the list of stocks I have here.
 

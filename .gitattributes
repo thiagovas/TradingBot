@@ -72,3 +72,8 @@ data/allStocks/15min_candles/VALE3 filter=lfs diff=lfs merge=lfs -text
 data/allStocks/15min_candles/VALE5 filter=lfs diff=lfs merge=lfs -text
 data/allStocks/15min_candles/VIVT4 filter=lfs diff=lfs merge=lfs -text
 data/20150725_candles_ibov_15min_10campos_comCabecalho.txt filter=lfs diff=lfs merge=lfs -text
+data/allStocks/trainset/est/averages/10_closeSmaEma filter=lfs diff=lfs merge=lfs -text
+data/allStocks/trainset/est/averages/15_closeSmaEma filter=lfs diff=lfs merge=lfs -text
+data/allStocks/trainset/est/averages/21_closeSmaEma filter=lfs diff=lfs merge=lfs -text
+data/allStocks/trainset/est/averages/5_closeSmaEma filter=lfs diff=lfs merge=lfs -text
+data/allStocks/trainset/est/averages/7_closeSmaEma filter=lfs diff=lfs merge=lfs -text

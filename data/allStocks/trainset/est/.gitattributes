@@ -178,3 +178,8 @@ Bollingerbands/ITUB4_7_2.0_closebbands filter=lfs diff=lfs merge=lfs -text
 Bollingerbands/ITUB4_7_2.5_closebbands filter=lfs diff=lfs merge=lfs -text
 Bollingerbands/ITUB4_7_3.0_closebbands filter=lfs diff=lfs merge=lfs -text
 Bollingerbands/ITUB4_7_3.5_closebbands filter=lfs diff=lfs merge=lfs -text
+averages/genAverages.py filter=lfs diff=lfs merge=lfs -text
+Bollingerbands/analysis filter=lfs diff=lfs merge=lfs -text
+Bollingerbands/genbbands.py filter=lfs diff=lfs merge=lfs -text
+Bollingerbands/LoCalc filter=lfs diff=lfs merge=lfs -text
+AllStocksEst.ods filter=lfs diff=lfs merge=lfs -text

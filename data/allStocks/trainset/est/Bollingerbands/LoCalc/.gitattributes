@@ -1,0 +1,9 @@
+ABEV3_21_1.5.ods filter=lfs diff=lfs merge=lfs -text
+ABEV3_21_2.0.ods filter=lfs diff=lfs merge=lfs -text
+ABEV3_21_2.5.ods filter=lfs diff=lfs merge=lfs -text
+ABEV3_5_1.5.ods filter=lfs diff=lfs merge=lfs -text
+ABEV3_5_2.0.ods filter=lfs diff=lfs merge=lfs -text
+BOVA11_21_2.0.ods filter=lfs diff=lfs merge=lfs -text
+EMBR3_21_1.5.ods filter=lfs diff=lfs merge=lfs -text
+EMBR3_21_2.0.ods filter=lfs diff=lfs merge=lfs -text
+EMBR3_21_2.5.ods filter=lfs diff=lfs merge=lfs -text

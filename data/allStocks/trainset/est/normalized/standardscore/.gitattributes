@@ -1,0 +1,12 @@
+LoCalc/ABEV3 filter=lfs diff=lfs merge=lfs -text
+LoCalc/ABEV3.ods filter=lfs diff=lfs merge=lfs -text
+LoCalc/BOVA11 filter=lfs diff=lfs merge=lfs -text
+LoCalc/BOVA11.ods filter=lfs diff=lfs merge=lfs -text
+LoCalc/CIEL3 filter=lfs diff=lfs merge=lfs -text
+LoCalc/CIEL3.ods filter=lfs diff=lfs merge=lfs -text
+LoCalc/CMIG4 filter=lfs diff=lfs merge=lfs -text
+LoCalc/CMIG4.ods filter=lfs diff=lfs merge=lfs -text
+LoCalc/EMBR3 filter=lfs diff=lfs merge=lfs -text
+LoCalc/EMBR3.ods filter=lfs diff=lfs merge=lfs -text
+LoCalc/ITUB4 filter=lfs diff=lfs merge=lfs -text
+LoCalc/ITUB4.ods filter=lfs diff=lfs merge=lfs -text

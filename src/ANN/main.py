@@ -10,6 +10,10 @@ import datahandler
 debug=False
 interval_days_options=[5, 7, 10, 15, 21]
 
+# This is the number of days the network will try to forecast after a set of training.
+# This value can vary in [1, interval_days]
+test_days=1
+
 
 def readintervaldays():
   while True:
@@ -47,7 +51,8 @@ def run_day(nnetwork, neural_network_input, day, interval_days, total_tests, tot
   hits_lows=lows=0
   standardDeviation=0
   network_result = []
-  for j in range(day+2*interval_days, day+3*interval_days):
+  
+  for j in range(day+2*interval_days, day+2*interval_days + test_days):
     input_data=[]
     for key, data in neural_network_input[j].iteritems():
       input_data.append(data)
@@ -119,8 +124,19 @@ def run(stockName, interval_days):
       total_highs = ret[4]
       total_lows = ret[5]
       
-      rel_highs = ','+str(float(total_hits_highs)/total_highs)
-      rel_lows = ','+str(float(total_hits_lows)/total_lows)
+
+      rel_highs=rel_lows=''
+
+      if total_highs==0:
+        rel_highs = ',-1'
+      else:
+        rel_highs = ','+str(float(total_hits_highs)/total_highs)
+      
+      if total_lows==0:
+        rel_lows=',-1'
+      else:
+        rel_lows = ','+str(float(total_hits_lows)/total_lows)
+      
       rel_all = ','+str(float(total_hits)/total_tests) 
       
       fout_highs.write(rel_highs)

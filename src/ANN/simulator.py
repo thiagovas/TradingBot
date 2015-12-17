@@ -12,6 +12,3 @@ class Simulator:
     self._lote=100
     self._initialCapital = initialCapital
   
-  
-  def analyze_and_trade(self):
-    pass

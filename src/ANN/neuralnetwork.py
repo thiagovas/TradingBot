@@ -42,7 +42,7 @@ class NeuralNetwork:
     self.net = buildNetwork(self.input_size, self.hidden_nodes_size,
                             self.output_size, bias=True)
     trainer = BackpropTrainer(self.net, self.trainingSet, learningrate=0.001, momentum=0.99)
-    trainer.trainEpochs(100)
+    trainer.trainEpochs(50)
     
     
   def activate(self, input_data):

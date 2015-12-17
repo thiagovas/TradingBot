@@ -10,6 +10,7 @@ import sys
 
 interval_days_options=[5, 7, 10, 15, 21]
 
+
 # This is the number of days the network will try to forecast after a set of training.
 # This value can vary in [1, interval_days]
 test_days=1

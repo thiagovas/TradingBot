@@ -63,7 +63,9 @@ def main():
         outFile.write(standardScore_line[1][:-1] + ' ') # Standard Deviation
         
         outFile.write(bbands_line[1] + ' ') # Upper Band
-        outFile.write(bbands_line[3][:-1] + '\n') # Lower Band
+        outFile.write(bbands_line[3][:-1] + ' ') # Lower Band
+        
+        outFile.write(average_line[-1]) # Date
       
       outFile.close()  
 

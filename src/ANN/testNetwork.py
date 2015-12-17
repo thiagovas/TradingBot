@@ -8,7 +8,6 @@ import datahandler
 import sys
 
 
-debug=False
 interval_days_options=[5, 7, 10, 15, 21]
 
 # This is the number of days the network will try to forecast after a set of training.
@@ -66,7 +65,7 @@ def run_day(nnetwork, neural_network_input, day, interval_days, total_tests, tot
       highs+=1
     else:
       lows+=1
-
+    
     total_tests+=1
     if (result[0] > 0.5 and hasRisen) or (result[0] <= 0.5 and not hasRisen):
       hits+=1
@@ -82,13 +81,12 @@ def run_day(nnetwork, neural_network_input, day, interval_days, total_tests, tot
   total_hits_highs+=hits_highs
   total_hits_lows+=hits_lows
   total_hits+=hits
-  if debug:
-    print 'Last window:\n' + str(hits) + ' out of ' + str(interval_days)
-    print str(hits_highs) + ' out of ' + str(highs) + ' highs.'
-    print str(hits_lows) + ' out of ' + str(lows) + ' lows.'
-    print 'Total:\n' + str(total_hits) + ' out of ' + str(total_tests)
-    print str(total_hits_highs) + ' out of ' + str(total_highs) + ' highs.'
-    print str(total_hits_lows) + ' out of ' + str(total_lows) + ' lows.' + '\n'
+  print 'Last window:\n' + str(hits) + ' out of ' + str(test_days)
+  print str(hits_highs) + ' out of ' + str(highs) + ' highs.'
+  print str(hits_lows) + ' out of ' + str(lows) + ' lows.'
+  print 'Total:\n' + str(total_hits) + ' out of ' + str(total_tests)
+  print str(total_hits_highs) + ' out of ' + str(total_highs) + ' highs.'
+  print str(total_hits_lows) + ' out of ' + str(total_lows) + ' lows.' + '\n'
   return [total_tests, total_hits, total_hits_highs, total_hits_lows, total_highs, total_lows, network_result]
 
 
@@ -100,60 +98,44 @@ def run(stockName, interval_days):
   objStock = datahandler.getStock(stockName)
   neural_network_input = objStock.getData()
   
-  if debug:
-    print '##################################################################'
-    print stockName
-    print '##################################################################\n'
+  print '##################################################################'
+  print stockName
+  print '##################################################################\n'
   
   total_tests=0
   total_hits=total_hits_highs=total_hits_lows=0
   total_highs=total_lows=0
   
-  fout_highs = open('./results/'+stockName+'_'+str(interval_days)+'_highs', 'w')
-  fout_lows = open('./results/'+stockName+'_'+str(interval_days)+'_lows', 'w')
-  fout_all = open('./results/'+stockName+'_'+str(interval_days)+'_all', 'w')
+  # Sliding Window
+  for i in range(len(neural_network_input)-3*interval_days):
+    ret = run_day(nnetwork, neural_network_input, i, interval_days, total_tests, total_hits, total_hits_highs, total_hits_lows, total_highs, total_lows)
+    total_tests = ret[0]
+    total_hits = ret[1]
+    total_hits_highs = ret[2]
+    total_hits_lows = ret[3]
+    total_highs = ret[4]
+    total_lows = ret[5]
   
-  
-  try:
-    # Sliding Window
-    for i in range(len(neural_network_input)-3*interval_days):
-      ret = run_day(nnetwork, neural_network_input, i, interval_days, total_tests, total_hits, total_hits_highs, total_hits_lows, total_highs, total_lows)
-      total_tests = ret[0]
-      total_hits = ret[1]
-      total_hits_highs = ret[2]
-      total_hits_lows = ret[3]
-      total_highs = ret[4]
-      total_lows = ret[5]
-      
+    rel_highs=rel_lows=''
 
-      rel_highs=rel_lows=''
+    if total_highs==0:
+      rel_highs = '-1'
+    else:
+      rel_highs = str(float(total_hits_highs)/total_highs)
+    
+    if total_lows==0:
+      rel_lows='-1'
+    else:
+      rel_lows = str(float(total_hits_lows)/total_lows)
+    
+    rel_all = str(float(total_hits)/total_tests)
+    
+    print 'All: ' + rel_all + '  High: ' + rel_highs + '  Low: ' + rel_lows
 
-      if total_highs==0:
-        rel_highs = ',-1'
-      else:
-        rel_highs = ','+str(float(total_hits_highs)/total_highs)
-      
-      if total_lows==0:
-        rel_lows=',-1'
-      else:
-        rel_lows = ','+str(float(total_hits_lows)/total_lows)
-      
-      rel_all = ','+str(float(total_hits)/total_tests) 
-      
-      fout_highs.write(rel_highs)
-      fout_lows.write(rel_lows)
-      fout_all.write(rel_all)
-  except KeyboardInterrupt:
-    fout_highs.close()
-    fout_lows.close()
-    fout_all.close()
-  
 
 def main():
   interval_days = readintervaldays()
   datahandler.load(interval_days)
-  
-  #for stockName in datahandler.stock_list:
   
   stockName = raw_input()
   run(stockName, interval_days)

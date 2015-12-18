@@ -1,0 +1,156 @@
+\documentclass[12pt]{article}
+
+\usepackage{sbc-template}
+\usepackage{graphicx,url}
+
+\usepackage[brazil]{babel}
+%\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
+% UTF-8 encoding is recommended by ShareLaTex
+
+\newcommand\ceil[1]{\lceil#1\rceil}
+\usepackage{relsize}
+
+\sloppy
+
+\title{Aplicação de Redes Neurais Artificiais no Mercado de Ações}
+
+\author{Thiago V. de A. Silva\inst{1} }
+
+
+\address{Departamento de Ciência da Computação \\
+  Universidade Federal de Minas Gerais\\
+  31270-010 -- Belo Horizonte -- MG -- Brasil
+  \email{thiagovieiraas@gmail.com.br}
+}
+
+\begin{document} 
+
+\maketitle
+
+%TODO: A Good abstract
+\iffalse
+\begin{resumo}
+\end{resumo}
+
+\begin{abstract}
+\end{abstract}
+\fi
+
+\section{Introdução}
+
+O objetivo deste trabalho é avaliar um conjunto de redes neurais, e elaborar uma estratégia de negociação de papéis de ações. Os resultados serão analisados em termos estatísticos e financeiros. Para a análise estatística, variáveis como quantidade de acertos e erros nas previsões das redes neurais serão levadas em conta; na análise financeira, as redes neurais serão aplicadas em simulações usando dados históricos de ativos da BOVESPA.
+
+\section{Metodologia} \label{sec:firstpage}
+
+\subsection{Conjunto de Dados}
+Do conjuntos de empresas listadas na BOVESPA, cinco foram escolhidas para serem usadas como base de dados para treinamentos e testes das redes neurais, além do índice Ibovespa. %Falar do intervalo de tempo considerado nos testes.
+Os ativos selecionados para a realização deste trabalho são:
+\begin{enumerate}
+\item BOVA11
+\item ITUB4
+\item CIEL3
+\item ABEV3
+\item CMIG4
+\item EMBR3
+\end{enumerate}
+
+A escolha dos ativos foi baseada principalmente no fato das empresas terem setores de atuação diferentes, sendo eles financeiro, consumo não-cíclico, utilidade pública e bens industriais.
+
+\subsection{Definição do Modelos das Rede Neurais}
+% Numero de nós na hidden layer - sqrt(input+output) seguindo o paper do conegundes
+
+Várias redes neurais com inputs diferentes serão geradas, todas elas serão redes \emph{multi-layer perceptrons} e serão treinadas usando o algoritmo de treinamento \emph{backpropagation}. O número de nós na camada escondida será dado por $\ceil{\frac{(I+O)}{2}}$ , onde I é o número de vértices do input e O é o número de vértices do output.
+
+\begin{center}
+\includegraphics[scale=0.45]{gg}\\
+\emph{Figura 1: Exemplo de Rede Neural Artificial}\\
+\end{center}
+
+A função de ativação é uma sigmóide definida por: \\
+\begin{center}
+$\mathlarger{S(t) = \frac{2}{1+e^t}-1}$
+\end{center}
+\subsubsection{Entrada}
+As variáveis a serem consideradas como input são:
+\begin{enumerate}
+\item O preço de fechamento dos últimos x dias.
+\item O preço de abertura dos últimos x dias.
+\item O preço máximo diário dos últimos x dias.
+\item O preço mínimo diário dos últimos x dias.
+\item Proporção definida por $\frac{MME}{MMS}$ dos últimos x dias.
+\item Bollinger Bands(20, 2).
+\item Escore Padrão
+\end{enumerate}
+
+Cada rede neural criada terá um subconjuntos das variáveis apresentadas acima. Os valores de x são fixados em 5, 7, 10, 15 ou 21 dias em cada configuração da rede neural. Os inputs que representam os preços dos ativos podem ser normalizados ou não, dependendo da caracterização apresentada no item 3.
+
+\subsubsection{Saída}
+A saída da rede neural estará no intervalo [-1,1], onde -1 indicará um possível movimento de queda, e 1 indicará um possível movimento de alta.
+
+\subsubsection{Treinamento e Testes}
+Os treinamentos serão feitos usando o algoritmo de \emph{backpropagation}. Para treinar as redes neurais, irei utilizar os dados históricos dos ativos desde 1 de janeiro de 2011 à 1 de janeiro de 2015.\\
+Serão executados vários testes, seguindo uma janela deslizante pelo intervalo de tempo definido acima. A cada 3x dias, os primeiros 2x dias da janela serão usados para treinamento e os x dias seguintes serão usados para teste.
+
+\section{Caracterização dos Dados}
+
+Para a caracterização e entendimento dos dados, executamos três tipos diferentes de estudos. Um gráfico com todos os ativos a serem usados neste trabalho, para mostrar conjuntamente o comportamento dos ativos. Outra classe de estudos onde normalizamos os preços de fechamento dos ativos usando escore padrão e uma função log. E uma terceira classe de estudos onde simplesmente testamos vários parâmetros para as bandas de Bollinger em cada ativo.
+
+\subsection{Análise Conjunta dos Ativos}
+A partir dos dados é possível perceber que somente BOVA11 sofre uma queda de preços entre o ínicio e o fim da janela de tempo de testes, sendo o único ativo em que perderíamos se adotássemos a estratégia \emph{buy-and-hold}.
+BOVA11, seguido de ITUB4, são os ativos mais voláteis, BOVA11 tem uma grande variação de preços por todo o período estudado. Em relação à ITUB4 é possível perceber uma volaticidade maior em relação aos outros ativos nos dois primeiros anos. No gráfico abaixo, podemos ver a variação de preços de cada ativo estudado.
+\begin{center}
+\includegraphics[scale=0.2]{allStocksGraph}\\
+\emph{Figura 2: Gráfico com séries temporais de todos os ativos avaliados}\\
+\end{center}
+
+\subsection{Escore e Desvio Padrão}
+
+No subitem anterior, notamos que os preços de alguns ativos variam mais que outros, neste subitem, estudaremos dois valores usados para analisar a volatilidade dos ativos, escore padrão e desvio padrão. O escore padrão, é definido por $z = {x- \mu \over \sigma}$, sendo ${\mu}$ a média de um período e ${\sigma}$ o desvio padrão deste mesmo período. A média usada para calcular o escore padrão foi uma média móvel com período de 5 dias. Abaixo podemos ver os gráficos com os preços e o escore padrão de cada ativo.
+% TODO: Explicar o significado do escore padrao
+
+\begin{center}
+\includegraphics[scale=0.23]{ABEV3StandardScore}\\
+\emph{Figura 3: Preços e Escore Padrão - ABEV3}\\
+\end{center}
+
+\begin{center}
+\includegraphics[scale=0.23]{BOVA11StandardScore}\\
+\emph{Figura 4: Preços e Escore Padrão - BOVA11}\\
+\end{center}
+
+\begin{center}
+\includegraphics[scale=0.23]{CIEL3StandardScore}\\
+\emph{Figura 5: Preços e Escore Padrão - CIEL3}\\
+\end{center}
+
+\begin{center}
+\includegraphics[scale=0.23]{CMIG4StandardScore}\\
+\emph{Figura 6: Preços e Escore Padrão - CMIG4}\\
+\end{center}
+
+\begin{center}
+\includegraphics[scale=0.23]{EMBR3StandardScore}\\
+\emph{Figura 7: Preços e Escore Padrão - EMBR3}\\
+\end{center}
+
+\begin{center}
+\includegraphics[scale=0.23]{ITUB4StandardScore}\\
+\emph{Figura 8: Preços e Escore Padrão - ITUB4}\\
+\end{center}
+
+Os valores do escore padrão médio e do desvio padrão de todos os ativos são:
+ABEV3 - 1.0192, 0.1494\\
+BOVA11 - 1.0243, 0.6289\\
+CIEL3 - 1.0444, 0.2599\\
+CMIG4 - 1.0267, 0.1872\\
+EMBR3 - 1.0090, 0.2385\\
+ITUB4 - 1.0265, 0.3649\\
+
+A partir destes valores, notamos que BOVA11 é o ativo com maior volatilidade no período analisado, e CIEL3, em média, é o ativo que mais se distancia da média.
+
+\subsection{Definição dos Parâmetros para as Bandas de Bollinger}
+
+Os parâmetros usados nas bandas de Bollinger são 20 dias de período e 2 de largura. Para definir os parâmetros usados nas bandas de Bollinger geramos todas as possibilidades usando intervalos de 5, 7, 10, 15 e 21 dias, com largura de banda variando entre 1.5 e 3.5. Não foi feita nenhuma análise quantitativa, mas tentamos encontrar parâmetros onde conseguimos uma quantidade razoável de gatilhos, e com o mínimo de falsos positivos, indicações de alta e indicações de baixa que não se confirmam. Todos os dados podem ser encontrados em \url{http://github.com/thiagovas/TradingBot}. 
+
+\end{document}

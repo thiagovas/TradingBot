@@ -9,3 +9,7 @@ allStocks/15min_candles - Every file there has data about a stock, the candles t
 allStocks/daily_candles - Every file there has data about a stock, the candles there are daily candles.
 
 allStocks/trainset - A subset of files that I'll use to train and test my ANN, checkout its documentation to see how that's done.
+
+selic_02012008_24072015.txt - A file with the SELIC interest rates from January 2nd 2008 to July 24th 2015.
+                              Taken from the "Banco Central do Brasil" website (http://www.bcb.gov.br/pt-br/#!/n/economia).
+                              At HomePage > "Economia e Financas".

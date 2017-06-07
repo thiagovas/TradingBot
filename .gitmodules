@@ -1,0 +1,3 @@
+[submodule "src/bitcoin-scraper"]
+	path = src/bitcoin-scraper
+	url = https://github.com/thiagovas/bitcoin-scraper.git

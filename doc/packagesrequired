@@ -1,6 +1,3 @@
-Required Packages
-
-TA-Lib
-NumPy >= 1.6.1
-SciPy >= 0.9
-SciKit-learn
+version https://git-lfs.github.com/spec/v1
+oid sha256:7496215a15217b1f88c4c932af523332bbef8aea5e7c57ac8a46da1380f213cd
+size 67

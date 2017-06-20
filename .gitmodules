@@ -1,3 +1,6 @@
 [submodule "src/bitcoin-scraper"]
 	path = src/bitcoin-scraper
 	url = https://github.com/thiagovas/bitcoin-scraper.git
+[submodule "src/BayesianNetwork/L2R-Framework"]
+	path = src/BayesianNetwork/L2R-Framework
+	url = https://github.com/gcmgomes/L2R-Framework.git

@@ -1,0 +1,4 @@
+originals/cny-2007-2015.csv filter=lfs diff=lfs merge=lfs -text
+originals/eurusd-2007-2015.csv filter=lfs diff=lfs merge=lfs -text
+originals/gld-2007-2015.csv filter=lfs diff=lfs merge=lfs -text
+originals/gspc-2007-2015.csv filter=lfs diff=lfs merge=lfs -text

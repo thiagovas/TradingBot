@@ -9,7 +9,7 @@
 # The output of this code is a file with all series joined into
 # one file. Each line representing a day, following the schema:
 #
-# Date  [DR 1]  [CVaR 1]  [DR 2]  [CVaR 2] ... [DR N] [CVaR N]
+# Date  [DR 1]  [VaR 1]  [DR 2]  [VaR 2] ... [DR N] [VaR N]
 #
 # DR    = Daily Return
 # DR _  = Daily Return of time series _
@@ -17,9 +17,19 @@
 # Output file saved at "./treated" folder.
 
 
-def main():
-  pass
+from sys import argv
 
+
+def main():
+  
+	if len(argv) == 1:
+		print "Error: Inform at least one filename."
+		return
+	
+	
+	
+	
+	
 
 
 if __name__ == '__main__':

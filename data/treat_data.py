@@ -18,6 +18,7 @@
 # Output file saved at "./treated" folder.
 
 
+import math
 from sys import argv
 from scipy.stats import norm
 import numpy as np
@@ -64,7 +65,8 @@ def read_ts(input_file):
     if neue_key[-1] == "\"" or neue_key[-1] == "\'":
       neue_key = neue_key[:-1]
     
-    r_ts[neue_key] = [value-tmp, valueAtRisk]
+    if not math.isnan(valueAtRisk):
+      r_ts[neue_key] = [value-tmp, valueAtRisk]
     tmp = value
   
   return r_ts
@@ -98,6 +100,23 @@ def write_output(output_filename, joint_ts):
     for v in value:
       ofile.write(" " + str(v))
     ofile.write("\n")
+  ofile.close()
+
+
+def write_bayesian_output(bayesian_output_filename, joint_ts):
+  ofile = open(bayesian_output_filename, 'w')
+  
+  for key in sorted(joint_ts):
+    value = joint_ts[key]
+    ofile.write("0 qid:12")
+    cur_id = 1
+    for v in value:
+      ofile.write(" ")
+      ofile.write(str(cur_id) + ":")
+      ofile.write(str(v))
+      cur_id += 1
+    ofile.write("\n")
+  ofile.close()
 
 
 def main():
@@ -107,6 +126,7 @@ def main():
 	
   joint_ts = None
   output_filename = "./treated/joint"
+  bayesian_output_filename = "./treated/joint_bayesian"
   
   fs = argv
   fs = fs[1:]
@@ -116,7 +136,8 @@ def main():
     ts = read_ts(input_file)
     joint_ts = join_ts(joint_ts, ts)
   
-  write_output(output_filename, joint_ts)  
+  write_output(output_filename, joint_ts)
+  write_bayesian_output(bayesian_output_filename, joint_ts)
 	
 
 

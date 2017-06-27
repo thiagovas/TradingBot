@@ -1,0 +1,3 @@
+Joint file generated from the following command:
+
+python treat_data.py bitcoin/bitstampUSD2012-2016 currency/originals/cny-2007-2015.csv currency/originals/eurusd-2007-2015.csv currency/originals/gld-2007-2015.csv currency/originals/gspc-2007-2015.csv

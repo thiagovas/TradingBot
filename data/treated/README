@@ -1,3 +1,15 @@
 Joint file generated from the following command:
 
 python treat_data.py bitcoin/bitstampUSD2012-2016 currency/originals/cny-2007-2015.csv currency/originals/eurusd-2007-2015.csv currency/originals/gld-2007-2015.csv currency/originals/gspc-2007-2015.csv
+
+That means, the order of time series is as follow:
+* Bitcoin
+* CNY
+* EUR
+* GSLD
+* GSPC
+
+Var-EURUSD  -> Var-Bitcoin
+Var-EURUSD  -> Var-CNY
+Var-EURUSR  -> Var-GSLD
+Var-GSPC    -> GSPC

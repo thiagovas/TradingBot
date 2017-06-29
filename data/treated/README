@@ -13,3 +13,8 @@ Var-EURUSD  -> Var-Bitcoin
 Var-EURUSD  -> Var-CNY
 Var-EURUSR  -> Var-GSLD
 Var-GSPC    -> GSPC
+
+
+The folder's style name is as follows:
+[ Discretizer's type ]_[ #bins ]_[ #test ]
+e.g.: tube_30_1 -> Test number 1, dataset discretized using TUBE with 30 bins.

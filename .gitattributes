@@ -93,3 +93,4 @@ doc/Projeto-ThiagoSilva.tex filter=lfs diff=lfs merge=lfs -text
 doc/sbc.bst filter=lfs diff=lfs merge=lfs -text
 doc/sbc-template.sty filter=lfs diff=lfs merge=lfs -text
 doc/usefulpapers filter=lfs diff=lfs merge=lfs -text
+data/20150725_candles_ibov_15min.zip filter=lfs diff=lfs merge=lfs -text
